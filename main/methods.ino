@@ -36,14 +36,14 @@ void moveForward() {
 }
 
 void turnLeft() {
-  analogWrite(rightMotorSpeed, 110);
+  analogWrite(rightMotorSpeed, 120);
   analogWrite(leftMotorSpeed, 0);
   delay(20);
 }
 
 void turnRight() {
   analogWrite(rightMotorSpeed, 0);
-  analogWrite(leftMotorSpeed, 110);
+  analogWrite(leftMotorSpeed, 120);
   delay(20);
 }
 
@@ -54,18 +54,18 @@ void turnU() {
 
   digitalWrite(rightMotorControl, HIGH);
   digitalWrite(leftMotorControl, LOW);
-  analogWrite(rightMotorSpeed, 110);
+  analogWrite(rightMotorSpeed, 120);
   analogWrite(leftMotorSpeed, 0);
 }
 
 bool moveOneInch() {
-  stopRobot();
-  delay(1000);
+//  stopRobot();
+//  delay(1000);
 
   startRobot();
   analogWrite(rightMotorSpeed, 75);
   analogWrite(leftMotorSpeed, 95);
-  delay(500);
+  delay(200);
 
   printSensorReadings();
   if (sensors[0] == 0 && sensors[1] == 0 && sensors[2] == 0 && sensors[3] == 0) {

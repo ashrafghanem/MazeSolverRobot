@@ -31,7 +31,7 @@ void loop() {
       // 0 means white, two leds are lighting
       printSensorReadings();
 
-      if (sensors[1] == 1 && sensors[2] == 1) {
+      if ((sensors[1] | sensors[2]) == 1) {
         startRobot();
         // straight
         if (sensors[0] == 0 && sensors[3] == 0) {
@@ -46,15 +46,18 @@ void loop() {
           turnRight();
         }
         // stop
-        if (sensors[0] == 1 && sensors[3] == 1) {
+        if (sensors[0] == 1 && sensors[1] == 1 && sensors[2] == 1 && sensors[3] == 1) {
           bool stop = moveOneInch();
           if (stop) {
             stopRobot();
-            break;
+            continue;
           }
           else {
             turnLeft();
           }
+        }
+        else{
+          turnLeft();
         }
       }
       // U turn (180 degrees)
@@ -69,8 +72,18 @@ void loop() {
         startRobot();
         turnRight();
       }
+      else if (sensors[0] == 0 && sensors[1] == 0 &&
+               sensors[2] == 0 && sensors[3] == 1) {
+        startRobot();
+        turnRight();
+      }
 
       else if (sensors[0] == 1 && sensors[1] == 1 &&
+               sensors[2] == 0 && sensors[3] == 0) {
+        startRobot();
+        turnLeft();
+      }
+      else if (sensors[0] == 1 && sensors[1] == 0 &&
                sensors[2] == 0 && sensors[3] == 0) {
         startRobot();
         turnLeft();
