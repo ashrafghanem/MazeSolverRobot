@@ -15,6 +15,8 @@ void printSensorReadings() {
   sensors[3] = digitalRead(rrSensor);
   //Serial.println(sensors[3]);
   //Serial.println('\n');
+
+  digitalWrite(13, !digitalRead(13));
 }
 
 void stopRobot() {
@@ -32,19 +34,19 @@ void startRobot() {
 void moveForward() {
   analogWrite(rightMotorSpeed, 75);
   analogWrite(leftMotorSpeed, 95);
-  delay(20);
+  //delay(2);
 }
 
 void turnLeft() {
   analogWrite(rightMotorSpeed, 120);
   analogWrite(leftMotorSpeed, 0);
-  delay(20);
+  //delay(2);
 }
 
 void turnRight() {
   analogWrite(rightMotorSpeed, 0);
   analogWrite(leftMotorSpeed, 120);
-  delay(20);
+  //delay(2);
 }
 
 void turnU() {
@@ -59,8 +61,8 @@ void turnU() {
 }
 
 bool moveOneInch() {
-//  stopRobot();
-//  delay(1000);
+  //  stopRobot();
+  //  delay(1000);
 
   startRobot();
   analogWrite(rightMotorSpeed, 75);

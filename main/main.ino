@@ -8,6 +8,7 @@ void setup() {
   pinMode(rightMotorSpeed, OUTPUT);
   pinMode(leftMotorControl, OUTPUT);
   pinMode(rightMotorControl, OUTPUT);
+  pinMode(13, OUTPUT);
 
   // 38400 is the default baud rate of the bluetooth module HC-06
   hc06.begin(38400);
@@ -26,9 +27,12 @@ void loop() {
         stopRobot();
         break;
       }
+
       // Serial.println("running");
       // 1 means black, one led is lighting
       // 0 means white, two leds are lighting
+
+      //delay(500);
       printSensorReadings();
 
       if ((sensors[1] | sensors[2]) == 1) {
@@ -56,9 +60,9 @@ void loop() {
             turnLeft();
           }
         }
-        else{
+        /*else{
           turnLeft();
-        }
+          }*/
       }
       // U turn (180 degrees)
       else if (sensors[0] == 0 && sensors[1] == 0 &&
@@ -66,7 +70,6 @@ void loop() {
         startRobot();
         turnU();
       }
-
       else if (sensors[0] == 0 && sensors[1] == 0 &&
                sensors[2] == 1 && sensors[3] == 1) {
         startRobot();
